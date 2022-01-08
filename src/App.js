@@ -5,6 +5,8 @@ import ContactForm from 'ContactForm';
 import Filter from 'Filter';
 import ContactList from 'ContactList';
 
+const CONTACTS = 'contacts-storage';
+
 class App extends Component {
   state = {
     contacts: [
@@ -15,6 +17,17 @@ class App extends Component {
     ],
     filter: '',
   };
+  componentDidMount(prevProps, prevState) {
+    const contacts = JSON.parse(localStorage.getItem(CONTACTS));
+    if (contacts) {
+      this.setState({ contacts: contacts });
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts.length !== prevState.contacts.length) {
+      localStorage.setItem(CONTACTS, JSON.stringify(this.state.contacts));
+    }
+  }
   onFormSubmit = event => {
     const { name, number } = event;
     const id = nanoid();
