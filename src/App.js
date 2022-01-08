@@ -5,9 +5,8 @@ import ContactForm from 'ContactForm';
 import Filter from 'Filter';
 import ContactList from 'ContactList';
 
-const CONTACTS = 'contacts-storage';
-
 class App extends Component {
+  static CONTACTS = 'contacts-storage';
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -18,14 +17,14 @@ class App extends Component {
     filter: '',
   };
   componentDidMount(prevProps, prevState) {
-    const contacts = JSON.parse(localStorage.getItem(CONTACTS));
+    const contacts = JSON.parse(localStorage.getItem(this.CONTACTS));
     if (contacts) {
       this.setState({ contacts: contacts });
     }
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts.length !== prevState.contacts.length) {
-      localStorage.setItem(CONTACTS, JSON.stringify(this.state.contacts));
+      localStorage.setItem(this.CONTACTS, JSON.stringify(this.state.contacts));
     }
   }
   onFormSubmit = event => {
@@ -35,7 +34,7 @@ class App extends Component {
       const existName = name.toLowerCase();
       const exist = prevState.contacts.find(contact => contact.name.toLowerCase() === existName);
       if (exist) {
-        alert(`${name} is already in contacts`);
+        alert(`${name} is already in contacts.`);
         return { ...prevState };
       }
       return {
