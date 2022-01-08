@@ -35,7 +35,7 @@ class App extends Component {
       const existName = name.toLowerCase();
       const exist = prevState.contacts.find(contact => contact.name.toLowerCase() === existName);
       if (exist) {
-        alert(`${name} is already in contacts.`);
+        alert(`${name} is already in contacts`);
         return { ...prevState };
       }
       return {
