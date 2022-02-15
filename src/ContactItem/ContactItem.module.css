@@ -1,0 +1,10 @@
+.contactItem {
+  display: flex;
+  justify-content: space-between;
+}
+.contactItem + .contactItem {
+  margin-top: 10px;
+}
+.btnDelete {
+  margin-left: 10px;
+}

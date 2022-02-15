@@ -26,8 +26,7 @@ class ContactForm extends Component {
         className={s.form}
         onSubmit={event => {
           event.preventDefault();
-
-          handleSubmit({ name, number });
+          handleSubmit({ event, name, number });
         }}
       >
         <label className={s.form__label}>
