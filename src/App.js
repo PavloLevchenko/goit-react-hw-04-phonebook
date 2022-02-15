@@ -53,6 +53,11 @@ class App extends Component {
       filter: event.currentTarget.value.toLowerCase(),
     });
   };
+  clearFilter = clearInput => {
+    this.setState({
+      filter: '',
+    });
+  };
   onFilter = (contacts, filter) => {
     return contacts.filter(contact => contact.name.toLowerCase().includes(filter));
   };
