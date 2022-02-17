@@ -4,7 +4,6 @@ import { nanoid } from 'nanoid';
 import ContactForm from 'ContactForm';
 import Filter from 'Filter';
 import ContactList from 'ContactList';
-import ContactItem from 'ContactItem';
 
 class App extends Component {
   state = {
@@ -53,7 +52,7 @@ class App extends Component {
       filter: event.currentTarget.value.toLowerCase(),
     });
   };
-  clearFilter = clearInput => {
+  clearFilter = () => {
     this.setState({
       filter: '',
     });
@@ -71,21 +70,7 @@ class App extends Component {
 
         <h2>Contacts</h2>
         <Filter handleFilterChange={this.setFilter} value={this.state.filter} />
-        <ContactList>
-          {filteredContacts.map(contact => {
-            const { id, name, number } = contact;
-            return (
-              <ContactItem
-                key={id}
-                onDeleteClick={() => {
-                  this.onContactDelete(id);
-                }}
-                name={name}
-                number={number}
-              ></ContactItem>
-            );
-          })}
-        </ContactList>
+        <ContactList contacts={filteredContacts} contactDelete={this.onContactDelete} />
       </div>
     );
   }
